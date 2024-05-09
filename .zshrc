@@ -1,19 +1,10 @@
 # ------
-# hooks
-. "$HOME/.asdf/asdf.sh" ## asdf
-eval "$(direnv hook zsh)" ## direnv
-eval "$(starship init zsh)" ## starship
-
-
-# paths
-export PATH="/opt/homebrew/bin/:$PATH"
-
-# aliases
-alias chrome="open -a 'Google Chrome'"
-
-# brew installed commands
+# brew installed commands (macOS)
 if type brew &>/dev/null
 then
+  export PATH="/opt/homebrew/bin/:$PATH"
+  # asdf hook
+  . /opt/homebrew/opt/asdf/libexec/asdf.sh
   # zsh-autosuggestion
   source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
   # zsh-fast-syntax-highlighting
@@ -23,6 +14,23 @@ then
   autoload -Uz compinit
   compinit
 fi
+
+# hooks
+## direnv
+if type direnv &>/dev/null
+then
+  eval "$(direnv hook zsh)"
+fi
+## starship
+if type starship &>/dev/null
+then
+  eval "$(starship init zsh)"
+fi
+
+# paths
+
+# aliases
+alias chrome="open -a 'Google Chrome'"
 
 # commands
 cdrepo() {
