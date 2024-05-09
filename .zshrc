@@ -11,6 +11,7 @@ then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
   autoload -Uz compinit
   compinit
+  zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 fi
 
 # hooks
