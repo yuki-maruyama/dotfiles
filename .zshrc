@@ -1,9 +1,9 @@
 # ------
 # hooks
-## asdf
-. "$HOME/.asdf/asdf.sh"
-## direnv
-eval "$(direnv hook zsh)"
+. "$HOME/.asdf/asdf.sh" ## asdf
+eval "$(direnv hook zsh)" ## direnv
+eval "$(starship init zsh)" ## starship
+
 
 # paths
 export PATH="/opt/homebrew/bin/:$PATH"

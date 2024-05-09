@@ -11,6 +11,7 @@ cd $BASEDIR
 
 DIR_SYMLINKS=(
 	".config/git/ignore"
+	".config/starship.toml"
 )
 
 ## home root dir symlink
