@@ -15,3 +15,14 @@ then
 else
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
+
+# Install brew packages
+BREW_PACKAGES=(
+  "zsh-autosuggestions"
+  "zsh-fast-syntax-highlighting"
+  "fzf"
+  "ghq"
+  "starship"
+)
+
+brew install ${BREW_PACKAGES[@]}
