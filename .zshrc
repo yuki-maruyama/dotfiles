@@ -3,8 +3,6 @@
 if type brew &>/dev/null
 then
   export PATH="/opt/homebrew/bin/:$PATH"
-  # asdf hook
-  . /opt/homebrew/opt/asdf/libexec/asdf.sh
   # zsh-autosuggestion
   source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
   # zsh-fast-syntax-highlighting
@@ -21,11 +19,17 @@ if type direnv &>/dev/null
 then
   eval "$(direnv hook zsh)"
 fi
+## asdf
+if type asdf &>/dev/null
+then
+  eval . "$HOME/.asdf/asdf.sh"
+fi
 ## starship
 if type starship &>/dev/null
 then
   eval "$(starship init zsh)"
 fi
+
 
 # paths
 
