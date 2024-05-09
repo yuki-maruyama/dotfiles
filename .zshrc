@@ -23,3 +23,16 @@ then
   autoload -Uz compinit
   compinit
 fi
+
+# commands
+cdrepo() {
+  local repodir=$(ghq list | fzf -1 +m) && cd $(ghq root)/$repodir
+}
+
+coderepo() {
+  local repodir=$(ghq list | fzf -1 +m) &&
+  echo Open VSCode WorkSpace! : $(ghq root)/$repodir
+  if [ -n "$repodir" ]; then
+   code $(ghq root)/$repodir
+  fi
+}
