@@ -29,7 +29,7 @@ then
   eval "$(direnv hook zsh)"
 fi
 ## asdf
-if type asdf &>/dev/null
+if [ -f "$HOME/.asdf/asdf.sh" ];
 then
   eval . "$HOME/.asdf/asdf.sh"
 fi
