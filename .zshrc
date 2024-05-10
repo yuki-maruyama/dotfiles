@@ -1,4 +1,12 @@
 # ------
+case ${OSTYPE} in
+	darwin*)
+		export PATH="/opt/homebrew/bin/:$PATH"
+		;;
+	linux*)
+		#linux
+		;;
+esac
 # sheldon
 eval "$(sheldon source)"
 
