@@ -35,6 +35,7 @@ fi
 
 # aliases
 alias chrome="open -a 'Google Chrome'"
+alias la="ls -la"
 
 # history setting
 HISTFILE=~/.zsh_history
