@@ -1,14 +1,11 @@
-# Amazon Q pre block. Keep at the top of this file.
-[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
 # ------
+# sheldon
+eval "$(sheldon source)"
+
 # brew installed commands (macOS)
 if type brew &>/dev/null
 then
   export PATH="/opt/homebrew/bin/:$PATH"
-  # zsh-autosuggestion
-  source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-  # zsh-fast-syntax-highlighting
-  source $(brew --prefix)/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
   # zsh-autocomplete
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
   autoload -Uz compinit
@@ -73,6 +70,3 @@ function fzf-select-history() {
 # keybind
 zle -N fzf-select-history
 bindkey '^r' fzf-select-history
-
-# Amazon Q post block. Keep at the bottom of this file.
-[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"

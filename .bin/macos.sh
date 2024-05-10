@@ -21,6 +21,7 @@ BREW_PACKAGES=(
   "sheldon"
   "fzf"
   "ghq"
+  "starship"
 )
 
 brew install ${BREW_PACKAGES[@]}
