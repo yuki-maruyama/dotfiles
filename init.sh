@@ -12,6 +12,7 @@ cd $BASEDIR
 DIR_SYMLINKS=(
 	".config/git/ignore"
 	".config/starship.toml"
+	".config/sheldon/plugins.toml"
 )
 
 ## home root dir symlink
@@ -24,5 +25,12 @@ done
 
 ## not root dir symlink
 for f in ${DIR_SYMLINKS[@]}; do
-	ln -snfv ${PWD}/"$f" ~/"$f"
+	dir=$(dirname "$f")
+  
+	# Check if the directory exists, if not, create it
+  if [ ! -d "$HOME/$dir" ]; then
+    mkdir -p "$HOME/$dir"
+  fi
+
+	ln -snfv ${PWD}/"$f" "$HOME/$f"
 done

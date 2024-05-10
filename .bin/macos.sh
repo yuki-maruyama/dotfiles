@@ -18,11 +18,9 @@ fi
 
 # Install brew packages
 BREW_PACKAGES=(
-  "zsh-autosuggestions"
-  "zsh-fast-syntax-highlighting"
+  "sheldon"
   "fzf"
   "ghq"
-  "starship"
 )
 
 brew install ${BREW_PACKAGES[@]}
