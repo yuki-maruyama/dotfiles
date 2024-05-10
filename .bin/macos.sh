@@ -25,3 +25,7 @@ BREW_PACKAGES=(
 )
 
 brew install ${BREW_PACKAGES[@]}
+
+# Change menubar item spacing
+defaults -currentHost write -globalDomain NSStatusItemSpacing -int 10
+defaults -currentHost write -globalDomain NSStatusItemSelectionPadding -int 6
