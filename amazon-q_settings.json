@@ -7,6 +7,7 @@
   "autocomplete.fuzzySearch": true,
   "autocomplete.immediatelyExecuteAfterSpace": false,
   "autocomplete.insertSpaceAutomatically": true,
+  "autocomplete.keybindings.right": "insertSelected",
   "autocomplete.keybindings.tab": "navigateDown",
   "autocomplete.onlyShowOnTab": false,
   "autocomplete.preferVerboseSuggestions": false,
