@@ -6,7 +6,7 @@ then
   # zsh-autosuggestion
   source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
   # zsh-fast-syntax-highlighting
-  source /opt/homebrew/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+  source $(brew --prefix)/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
   # zsh-autocomplete
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
   autoload -Uz compinit
@@ -37,6 +37,18 @@ fi
 # aliases
 alias chrome="open -a 'Google Chrome'"
 
+# history setting
+HISTFILE=~/.zsh_history
+HISTSIZE=1000000
+SAVEHIST=1000000
+
+setopt share_history
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt hist_reduce_blanks
+setopt hist_save_no_dups 
+setopt inc_append_history
+
 # commands
 cdrepo() {
   local repodir=$(ghq list | fzf -1 +m) && cd $(ghq root)/$repodir
@@ -49,3 +61,13 @@ coderepo() {
    code $(ghq root)/$repodir
   fi
 }
+
+function fzf-select-history() {
+    BUFFER=$(history -n -r 1 | fzf --query "$LBUFFER")
+    CURSOR=$#BUFFER
+    zle reset-prompt
+}
+
+# keybind
+zle -N fzf-select-history
+bindkey '^r' fzf-select-history
