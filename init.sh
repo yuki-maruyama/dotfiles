@@ -2,6 +2,8 @@
 
 if [ "$(uname)" == "Darwin" ] ; then
 	.bin/macos.sh
+	# Amazon Q setting file
+	ln -snfv ${PWD}/amazon-q_settings.json "${HOME}/Library/Application Support/amazon-q/settings.json"
 fi
 
 # symlink
