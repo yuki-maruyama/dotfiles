@@ -6,10 +6,11 @@
   "autocomplete.firstTokenCompletion": true,
   "autocomplete.fuzzySearch": true,
   "autocomplete.immediatelyExecuteAfterSpace": false,
+  "autocomplete.insertSpaceAutomatically": true,
   "autocomplete.keybindings.tab": "navigateDown",
   "autocomplete.onlyShowOnTab": false,
-  "autocomplete.preferVerboseSuggestions": true,
-  "autocomplete.scrollWrapAround": false,
-  "autocomplete.theme": "github-dark",
+  "autocomplete.preferVerboseSuggestions": false,
+  "autocomplete.scrollWrapAround": true,
+  "autocomplete.theme": "system",
   "integrations.vscode.disabled": false
 }
