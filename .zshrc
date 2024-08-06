@@ -1,6 +1,3 @@
-# Amazon Q pre block. Keep at the top of this file.
-[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
-# ------
 case ${OSTYPE} in
 	darwin*)
 		export PATH="/opt/homebrew/bin/:$PATH"
@@ -80,6 +77,3 @@ function fzf-select-history() {
 # keybind
 zle -N fzf-select-history
 bindkey '^r' fzf-select-history
-
-# Amazon Q post block. Keep at the bottom of this file.
-[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
