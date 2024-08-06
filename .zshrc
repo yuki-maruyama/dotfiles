@@ -38,6 +38,10 @@ fi
 
 
 # paths
+if type go &>/dev/null
+then
+  export PATH="$PATH:$(go env GOPATH)/bin"
+fi
 
 # aliases
 alias chrome="open -a 'Google Chrome'"
