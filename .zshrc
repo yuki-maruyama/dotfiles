@@ -2,6 +2,9 @@ case ${OSTYPE} in
 	darwin*)
 		export PATH="/opt/homebrew/bin/:$PATH"
     export LIBRARY_PATH="/opt/homebrew/lib/:$LIBRARY_PATH"
+    export C_INCLUDE_PATH="/opt/homebrew/include/:$C_INCLUDE_PATH"
+    export LD_LIBRARY_PATH="/opt/homebrew/lib/:$LD_LIBRARY_PATH"
+    export CPLUS_INCLUDE_PATH="/opt/homebrew/include/:$CPLUS_INCLUDE_PATH"
 		;;
 	linux*)
 		#linux
