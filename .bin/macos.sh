@@ -18,7 +18,6 @@ fi
 
 # Install brew packages
 BREW_PACKAGES=(
-  "amazon-q"
   "sheldon"
   "fzf"
   "ghq"
