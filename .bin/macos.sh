@@ -16,6 +16,15 @@ else
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
+# install asdf
+if [ -d ~/.asdf ]
+then
+  echo "asdf is already installed"
+else
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.1
+  . "$HOME/.asdf/asdf.sh"
+fi
+
 # Install brew packages
 BREW_PACKAGES=(
   "sheldon"
