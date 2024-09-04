@@ -7,7 +7,7 @@ case ${OSTYPE} in
     export CPLUS_INCLUDE_PATH="/opt/homebrew/include/:$CPLUS_INCLUDE_PATH"
 		;;
 	linux*)
-		#linux
+    export PATH="$HOME/.local/bin:$PATH"
 		;;
 esac
 # sheldon

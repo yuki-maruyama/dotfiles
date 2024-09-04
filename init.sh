@@ -2,6 +2,16 @@
 
 if [ "$(uname)" == "Darwin" ] ; then
 	.bin/macos.sh
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ] ; then
+  # check distro
+	if [ -e /etc/debian_version ] ; then
+		.bin/debian.sh
+	else
+		echo "Your distro is not supported"
+	fi
+else
+	echo "Your platform is not supported"
+	exit 1
 fi
 
 # symlink
