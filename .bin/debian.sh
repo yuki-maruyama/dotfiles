@@ -54,3 +54,10 @@ else
   sh -c "$(curl -fsSL https://starship.rs/install.sh)"
 fi
 
+# install direnv
+if type direnv &>/dev/null
+then
+  echo "direnv is already installed"
+else
+  sudo apt install direnv -y
+fi

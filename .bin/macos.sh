@@ -31,6 +31,7 @@ BREW_PACKAGES=(
   "fzf"
   "ghq"
   "starship"
+  "direnv"
 )
 
 brew install ${BREW_PACKAGES[@]}
