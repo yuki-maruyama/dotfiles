@@ -1,6 +1,6 @@
 # install prerequired packages
 sudo apt update
-sudo apt install zsh curl git unzip -y
+sudo apt install zsh curl git unzip gpg -y
 
 # change default shell
 if [ $SHELL = "/bin/zsh" ]

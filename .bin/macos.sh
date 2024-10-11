@@ -32,6 +32,7 @@ BREW_PACKAGES=(
   "ghq"
   "starship"
   "direnv"
+  "gpg"
 )
 
 brew install ${BREW_PACKAGES[@]}

@@ -41,6 +41,11 @@ then
   eval "$(starship init zsh)"
 fi
 
+# gpg
+if type gpg &>/dev/null;
+then
+  export GPG_TTY=$(tty)
+fi
 
 # paths
 if type go &>/dev/null
