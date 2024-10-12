@@ -33,6 +33,7 @@ BREW_PACKAGES=(
   "starship"
   "direnv"
   "gpg"
+  "pinentry-mac"
 )
 
 brew install ${BREW_PACKAGES[@]}
