@@ -82,6 +82,14 @@ coderepo() {
   fi
 }
 
+codewebstorm() {
+  local repodir=$(ghq list | fzf -1 +m) &&
+  echo Open WebStorm WorkSpace! : $(ghq root)/$repodir
+  if [ -n "$repodir" ]; then
+   webstorm $(ghq root)/$repodir
+  fi
+}
+
 function fzf-select-history() {
     BUFFER=$(history -n -r 1 | fzf --query "$LBUFFER")
     CURSOR=$#BUFFER
