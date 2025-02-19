@@ -90,6 +90,14 @@ codewebstorm() {
   fi
 }
 
+codegoland() {
+  local repodir=$(ghq list | fzf -1 +m) &&
+  echo Open GoLand WorkSpace! : $(ghq root)/$repodir
+  if [ -n "$repodir" ]; then
+   goland $(ghq root)/$repodir
+  fi
+}
+
 function fzf-select-history() {
     BUFFER=$(history -n -r 1 | fzf --query "$LBUFFER")
     CURSOR=$#BUFFER
