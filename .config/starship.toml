@@ -4,6 +4,7 @@
 # Inserts a blank line between shell prompts
 add_newline = true
 
+command_timeout = 1500
 format = '$hostname$username $directory$all$line_break$character'
 right_format = '$cmd_duration$line_break$time'
 
