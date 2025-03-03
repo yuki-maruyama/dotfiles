@@ -28,23 +28,24 @@ else
     | bash -s -- --repo rossmacarthur/sheldon --to ~/.local/bin
 fi
 
-# install fzf
-if type fzf &>/dev/null
-then
-  echo "fzf is already installed"
-else
-  sudo apt install fzf -y
-fi
+# insrtall apt packages
+APT_PACKAGES=(
+  "fzf"
+)
 
-# install ghq
-if type ghq &>/dev/null
-then
-  echo "ghq is already installed"
-else
-  asdf plugin add ghq
-  asdf install ghq latest
-  asdf global ghq latest
-fi
+sudo apt install ${APT_PACKAGES[@]} -y
+
+# install asdf plugins
+ASDF_PLUGINS=(
+  "ghq"
+  "direnv"
+)
+
+for plugin in ${ASDF_PLUGINS[@]}; do
+  asdf plugin add $plugin
+  asdf install $plugin latest
+  asdf global $plugin latest
+done
 
 # install starship
 if type starship &>/dev/null
@@ -52,12 +53,4 @@ then
   echo "starship is already installed"
 else
   sh -c "$(curl -fsSL https://starship.rs/install.sh)"
-fi
-
-# install direnv
-if type direnv &>/dev/null
-then
-  echo "direnv is already installed"
-else
-  sudo apt install direnv -y
 fi

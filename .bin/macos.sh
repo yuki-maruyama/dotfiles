@@ -29,14 +29,24 @@ fi
 BREW_PACKAGES=(
   "sheldon"
   "fzf"
-  "ghq"
   "starship"
-  "direnv"
   "gpg"
   "pinentry-mac"
 )
 
 brew install ${BREW_PACKAGES[@]}
+
+# Install asdf plugins
+ASDF_PLUGINS=(
+  "direnv"
+  "ghq"
+)
+
+for plugin in ${ASDF_PLUGINS[@]}; do
+  asdf plugin add $plugin
+  asdf install $plugin latest
+  asdf global $plugin latest
+done
 
 # "pinentry" doesn't work with gpg-agent on macOS
 rm -f $(which pinentry)
