@@ -24,30 +24,28 @@ then
 fi
 
 # hooks
-## direnv
-if type direnv &>/dev/null
-then
-  eval "$(direnv hook zsh)"
-fi
 ## asdf
 if [ -f "$HOME/.asdf/asdf.sh" ];
 then
   eval . "$HOME/.asdf/asdf.sh"
   export ASDF_GOLANG_MOD_VERSION_ENABLED=true
 fi
+## direnv
+if type direnv &>/dev/null
+then
+  eval "$(asdf exec direnv hook zsh)"
+fi
 ## starship
 if type starship &>/dev/null
 then
   eval "$(starship init zsh)"
 fi
-
-# gpg
+## gpg
 if type gpg &>/dev/null;
 then
   export GPG_TTY=$(tty)
 fi
-
-# paths
+## paths
 if type go &>/dev/null
 then
   export PATH="$PATH:$(go env GOPATH)/bin"

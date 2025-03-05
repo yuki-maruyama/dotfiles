@@ -49,10 +49,6 @@ for plugin in ${ASDF_PLUGINS[@]}; do
   asdf global $plugin latest
 done
 
-# "pinentry" doesn't work with gpg-agent on macOS
-rm -f $(which pinentry)
-ln -s $(which pinentry-mac) $(which pinentry)
-
 # Change menubar item spacing
 defaults -currentHost write -globalDomain NSStatusItemSpacing -int 10
 defaults -currentHost write -globalDomain NSStatusItemSelectionPadding -int 6
