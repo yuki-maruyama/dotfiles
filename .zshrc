@@ -5,6 +5,7 @@ case ${OSTYPE} in
     export C_INCLUDE_PATH="/opt/homebrew/include/:$C_INCLUDE_PATH"
     export LD_LIBRARY_PATH="/opt/homebrew/lib/:$LD_LIBRARY_PATH"
     export CPLUS_INCLUDE_PATH="/opt/homebrew/include/:$CPLUS_INCLUDE_PATH"
+    export GPG_TTY=$(tty)
 		;;
 	linux*)
     export PATH="$HOME/.local/bin:$PATH"
