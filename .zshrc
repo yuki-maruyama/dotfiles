@@ -37,7 +37,7 @@ then
   eval "$(asdf exec direnv hook zsh)"
 fi
 ## starship
-if type starship &>/dev/null
+if type starship &>/dev/null && [[ -z "$NO_STARSHIP" || "$NO_STARSHIP" != "true" ]]
 then
   eval "$(starship init zsh)"
 fi
