@@ -15,7 +15,7 @@ else
 fi
 
 # symlink
-IGNORE_PATTERN="^\.(git|bin|config)"
+IGNORE_PATTERN="^\.(git|bin|config|editorconfig)"
 BASEDIR=$(dirname $0)
 cd $BASEDIR
 
