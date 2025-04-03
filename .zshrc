@@ -6,6 +6,8 @@ case ${OSTYPE} in
     export LD_LIBRARY_PATH="/opt/homebrew/lib/:$LD_LIBRARY_PATH"
     export CPLUS_INCLUDE_PATH="/opt/homebrew/include/:$CPLUS_INCLUDE_PATH"
     export GPG_TTY=$(tty)
+
+    export PATH="/opt/homebrew/opt/mysql-client@8.0/bin:$PATH"
 		;;
 	linux*)
     export PATH="$HOME/.local/bin:$PATH"
