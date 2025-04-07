@@ -112,3 +112,12 @@ function fzf-select-history() {
 # keybind
 zle -N fzf-select-history
 bindkey '^r' fzf-select-history
+
+# dotfiles update checker
+if [ -d "$HOME/dotfiles" ]; then
+  if test -n "$(git -C $HOME/dotfiles status --porcelain)"; then
+    echo -e "\033[0;31m[dotfiles] You have uncommitted changes in your dotfiles repository.\033[0m"
+  elif test -n "$(git -C $HOME/dotfiles diff --stat --cached origin/master)"; then
+    echo -e "\033[0;33m[dotfiles] Your dotfiles repository is behind the remote.\033[0m"
+  fi
+fi
