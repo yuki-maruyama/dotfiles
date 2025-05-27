@@ -27,3 +27,6 @@ Temporary Items
 
 # env file
 .envrc
+
+# .idea directory
+.idea
