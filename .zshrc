@@ -103,6 +103,10 @@ delete-merged-branch() {
   git branch --merged | grep -v "\\*\\|master\\|main\\|dev\\|develop" | xargs -I % git branch -d %
 }
 
+export-envrc() {
+  grep -v '^\s*#' .envrc | grep -v '^\s*$' | sed 's/^export //' | sed 's/ *#.*$//' | paste -sd ';' -
+}
+
 function fzf-select-history() {
     BUFFER=$(history -n -r 1 | fzf --query "$LBUFFER")
     CURSOR=$#BUFFER
