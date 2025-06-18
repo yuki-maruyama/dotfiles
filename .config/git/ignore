@@ -31,3 +31,5 @@ Temporary Items
 
 # .idea directory
 .idea
+
+**/.claude/settings.local.json
