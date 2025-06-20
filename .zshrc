@@ -27,12 +27,6 @@ then
 fi
 
 # hooks
-## asdf
-if [ -f "$HOME/.asdf/asdf.sh" ];
-then
-  eval . "$HOME/.asdf/asdf.sh"
-  export ASDF_GOLANG_MOD_VERSION_ENABLED=true
-fi
 ## direnv
 if type direnv &>/dev/null
 then
