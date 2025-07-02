@@ -30,7 +30,7 @@ fi
 ## direnv
 if type direnv &>/dev/null
 then
-  eval "$(asdf exec direnv hook zsh)"
+  eval "$(direnv hook zsh)"
 fi
 ## starship
 if type starship &>/dev/null && [[ -z "$NO_STARSHIP" || "$NO_STARSHIP" != "true" ]]

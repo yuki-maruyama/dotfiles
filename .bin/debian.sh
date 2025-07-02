@@ -31,6 +31,7 @@ fi
 # insrtall apt packages
 APT_PACKAGES=(
   "fzf"
+  "direnv"
 )
 
 sudo apt install ${APT_PACKAGES[@]} -y
@@ -38,7 +39,6 @@ sudo apt install ${APT_PACKAGES[@]} -y
 # install asdf plugins
 ASDF_PLUGINS=(
   "ghq"
-  "direnv"
 )
 
 for plugin in ${ASDF_PLUGINS[@]}; do

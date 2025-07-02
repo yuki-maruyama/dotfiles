@@ -19,6 +19,7 @@ fi
 # Install brew packages
 BREW_PACKAGES=(
   "asdf"
+  "direnv"
   "sheldon"
   "fzf"
   "starship"
@@ -30,7 +31,6 @@ brew install ${BREW_PACKAGES[@]}
 
 # Install asdf plugins
 ASDF_PLUGINS=(
-  "direnv"
   "ghq"
 )
 
