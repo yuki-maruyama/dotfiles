@@ -1,6 +1,6 @@
 case ${OSTYPE} in
 	darwin*)
-		export PATH="/opt/homebrew/bin/:$HOME/.local/bin:$PATH"
+		export PATH="/opt/homebrew/bin:$HOME/.local/bin:$PATH"
     export PATH="/opt/homebrew/sbin:$PATH"
     export LIBRARY_PATH="/opt/homebrew/lib/:$LIBRARY_PATH"
     export C_INCLUDE_PATH="/opt/homebrew/include/:$C_INCLUDE_PATH"
