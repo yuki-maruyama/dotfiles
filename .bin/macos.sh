@@ -25,6 +25,7 @@ BREW_PACKAGES=(
   "starship"
   "gpg"
   "pinentry-mac"
+  "gh"
 )
 
 brew install ${BREW_PACKAGES[@]}
@@ -37,7 +38,7 @@ ASDF_PLUGINS=(
 for plugin in ${ASDF_PLUGINS[@]}; do
   asdf plugin add $plugin
   asdf install $plugin latest
-  asdf global $plugin latest
+  asdf set -u $plugin latest
 done
 
 # Change menubar item spacing

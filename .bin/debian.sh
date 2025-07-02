@@ -32,6 +32,7 @@ fi
 APT_PACKAGES=(
   "fzf"
   "direnv"
+  "gh"
 )
 
 sudo apt install ${APT_PACKAGES[@]} -y
@@ -44,7 +45,7 @@ ASDF_PLUGINS=(
 for plugin in ${ASDF_PLUGINS[@]}; do
   asdf plugin add $plugin
   asdf install $plugin latest
-  asdf global $plugin latest
+  asdf set -u $plugin latest
 done
 
 # install starship
