@@ -28,10 +28,9 @@ then
 fi
 
 # hooks
-## direnv
-if type direnv &>/dev/null
+if type -a asdf &>/dev/null
 then
-  eval "$(direnv hook zsh)"
+  export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 fi
 ## starship
 if type starship &>/dev/null && [[ -z "$NO_STARSHIP" || "$NO_STARSHIP" != "true" ]]
