@@ -2,6 +2,20 @@
 sudo apt update
 sudo apt install zsh curl git unzip gpg -y
 
+ARCH=$(uname -m)
+if [ $ARCH = "x86_64" ]
+then
+  echo "x86_64 architecture detected"
+  ARCH="amd64"
+elif [ $ARCH = "aarch64" ]
+then
+  echo "aarch64 architecture detected"
+  ARCH="arm64"
+else
+  echo "Unsupported architecture: $ARCH"
+  exit 1
+fi
+
 # change default shell
 if [ $SHELL = "/bin/zsh" ]
 then
@@ -11,15 +25,18 @@ else
 fi
 
 # install asdf
-if [ -d ~/.asdf ]
+ASDF_VERSION=v0.18.0
+if type -a asdf &>/dev/null
 then
   echo "asdf is already installed"
 else
-  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.1
-  . "$HOME/.asdf/asdf.sh"
+    wget https://github.com/asdf-vm/asdf/releases/download/$ASDF_VERSION/asdf-$ASDF_VERSION-linux-$ARCH.tar.gz -O /tmp/asdf.tar.gz
+    mkdir -p ~/.local/bin
+    tar -xzf /tmp/asdf.tar.gz -C ~/.local/bin --strip-components
+    rm /tmp/asdf.tar.gz
 fi
 
-# insatll sheldon
+# install sheldon
 if type sheldon &>/dev/null
 then
   echo "sheldon is already installed"
