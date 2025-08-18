@@ -101,6 +101,17 @@ export-envrc() {
   grep -v '^\s*#' .envrc | grep -v '^\s*$' | sed 's/^export //' | sed 's/ *#.*$//' | paste -sd ';' -
 }
 
+openhls() {
+  case $OSTYPE in
+    darwin*)
+      open -a "QuickTime Player" "$1"
+      ;;
+    linux*)
+      mpv --hls-live-edge=5 "$1"
+      ;;
+  esac
+}
+
 function fzf-select-history() {
     BUFFER=$(history -n -r 1 | fzf --query "$LBUFFER")
     CURSOR=$#BUFFER
