@@ -42,6 +42,11 @@ if type gpg &>/dev/null;
 then
   export GPG_TTY=$(tty)
 fi
+## dotenv
+if type dotenv &>/dev/null
+then
+  eval "$(dotenv hook zsh)"
+fi
 ## paths
 if type go &>/dev/null
 then
