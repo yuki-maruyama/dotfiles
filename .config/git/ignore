@@ -32,6 +32,9 @@ Temporary Items
 # .idea directory
 .idea
 
+# .vscode directory
+.vscode
+
 **/.claude/settings.local.json
 
 
