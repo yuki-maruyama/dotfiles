@@ -9,18 +9,19 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 $wingetPackageList = @(
     "7zip.7zip",
     "Starship.Starship",
-    "Git.Git"
+    "Git.Git",
+    "x-motemen.ghq"
 )
 
 Write-Host "Installing packages from winget"
 # install
 foreach ($wingetPackage in $wingetPackageList) {
   Write-Host "Installing $wingetPackage"
-  winget install -e --id $wingetPackage 
+  winget install -e --id $wingetPackage
   Write-Host `n
 }
 
-# symlink 
+# symlink
 $symlinks = @(
     ("$HOME\.config\starship.toml", "$scriptDirectory\.config\starship.toml"),
     ("$HOME\.config\git\ignore", "$scriptDirectory\.config\git\ignore"),
