@@ -35,7 +35,12 @@ Temporary Items
 # .vscode directory
 .vscode
 
+# claude local settings
 **/.claude/settings.local.json
 
-
+# serena
 .serena
+
+# docker compose override files
+docker-compose.override.yml
+compose.override.yaml
