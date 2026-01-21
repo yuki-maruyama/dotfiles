@@ -28,9 +28,10 @@ then
 fi
 
 # hooks
-if type -a asdf &>/dev/null
+## mise
+if type mise &>/dev/null
 then
-  export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+  eval "$(mise activate zsh)"
 fi
 ## starship
 if type starship &>/dev/null && [[ -z "$NO_STARSHIP" || "$NO_STARSHIP" != "true" ]]

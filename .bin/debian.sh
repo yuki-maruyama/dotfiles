@@ -24,18 +24,6 @@ else
   sudo chsh -s $(which zsh)
 fi
 
-# install asdf
-ASDF_VERSION=v0.18.0
-if type -a asdf &>/dev/null
-then
-  echo "asdf is already installed"
-else
-    wget https://github.com/asdf-vm/asdf/releases/download/$ASDF_VERSION/asdf-$ASDF_VERSION-linux-$ARCH.tar.gz -O /tmp/asdf.tar.gz
-    mkdir -p ~/.local/bin
-    tar -xzf /tmp/asdf.tar.gz -C ~/.local/bin --strip-components
-    rm /tmp/asdf.tar.gz
-fi
-
 # install sheldon
 if type sheldon &>/dev/null
 then
@@ -54,15 +42,14 @@ APT_PACKAGES=(
 
 sudo apt install ${APT_PACKAGES[@]} -y
 
-# install asdf plugins
-ASDF_PLUGINS=(
+# install mise plugins
+MISE_PLUGINS=(
   "ghq"
 )
 
-for plugin in ${ASDF_PLUGINS[@]}; do
-  asdf plugin add $plugin
-  asdf install $plugin latest
-  asdf set -u $plugin latest
+for plugin in ${MISE_PLUGINS[@]}; do
+  mise install $plugin
+  mise use $plugin
 done
 
 # install starship

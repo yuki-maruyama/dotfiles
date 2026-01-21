@@ -10,7 +10,8 @@ $wingetPackageList = @(
     "7zip.7zip",
     "Starship.Starship",
     "Git.Git",
-    "x-motemen.ghq"
+    "x-motemen.ghq",
+    "jdx.mise"
 )
 
 Write-Host "Installing packages from winget"

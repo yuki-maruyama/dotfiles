@@ -18,28 +18,18 @@ fi
 
 # Install brew packages
 BREW_PACKAGES=(
-  "asdf"
+  "mise"
   "direnv"
   "sheldon"
   "fzf"
   "starship"
   "gpg"
   "pinentry-mac"
+  "ghq"
   "gh"
 )
 
 brew install ${BREW_PACKAGES[@]}
-
-# Install asdf plugins
-ASDF_PLUGINS=(
-  "ghq"
-)
-
-for plugin in ${ASDF_PLUGINS[@]}; do
-  asdf plugin add $plugin
-  asdf install $plugin latest
-  asdf set -u $plugin latest
-done
 
 # Change menubar item spacing
 defaults -currentHost write -globalDomain NSStatusItemSpacing -int 10
