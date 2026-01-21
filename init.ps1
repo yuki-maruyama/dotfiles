@@ -9,6 +9,7 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 $wingetPackageList = @(
     "7zip.7zip",
     "Starship.Starship",
+    "direnv.direnv",
     "Git.Git",
     "x-motemen.ghq",
     "jdx.mise"
