@@ -33,6 +33,14 @@ else
     | bash -s -- --repo rossmacarthur/sheldon --to ~/.local/bin
 fi
 
+# install mise
+if type mise &>/dev/null
+then
+  echo "mise is already installed"
+else
+  curl --proto '=https' -fLsS https://mise.run | bash
+fi
+
 # insrtall apt packages
 APT_PACKAGES=(
   "fzf"
