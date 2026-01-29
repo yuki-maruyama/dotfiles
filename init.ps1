@@ -3,7 +3,7 @@ $scriptDirectory = Split-Path -Parent $scriptPath
 $profileDirectory = Split-Path -Parent $PROFILE
 
 # set execution policy to Administrators
-if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole("Administrators")) { Start-Process powershell.exe "-File `"$PSCommandPath`"" -Verb RunAs; exit }
+if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole("Administrators")) { Start-Process pwsh "-File `"$PSCommandPath`"" -Verb RunAs; exit }
 
 # Winget package list
 $wingetPackageList = @(
