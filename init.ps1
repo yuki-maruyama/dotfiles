@@ -12,6 +12,7 @@ $wingetPackageList = @(
     "direnv.direnv",
     "Git.Git",
     "x-motemen.ghq",
+    "junegunn.fzf",
     "jdx.mise"
 )
 
