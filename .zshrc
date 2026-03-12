@@ -9,9 +9,15 @@ case ${OSTYPE} in
     export GPG_TTY=$(tty)
 
     export PATH="/opt/homebrew/opt/mysql-client@8.0/bin:$PATH"
+
+    export PNPM_HOME="$HOME/Library/pnpm"
+    export PATH="$PNPM_HOME:$PATH"
 		;;
 	linux*)
     export PATH="$HOME/.local/bin:$PATH"
+
+    export PNPM_HOME="$HOME/.local/share/pnpm"
+    export PATH="$PNPM_HOME:$PATH"
 		;;
 esac
 # sheldon
