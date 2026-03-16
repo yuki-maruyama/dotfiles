@@ -2,15 +2,21 @@ Invoke-Expression (&starship init powershell)
 (&mise activate pwsh) | Out-String | Invoke-Expression
 
 # commands
+function Get-RepoList {
+    $ghqList = ghq list
+    $gwqList = gwq list 2>$null
+    ($ghqList + $gwqList) | Sort-Object -Unique | fzf -1 +m
+}
+
 function cdrepo {
-    $repodir = ghq list | fzf -1 +m
+    $repodir = Get-RepoList
     if ($repodir) {
         Set-Location "$(ghq root)/$repodir"
     }
 }
 
 function coderepo {
-    $repodir = ghq list | fzf -1 +m
+    $repodir = Get-RepoList
     if ($repodir) {
         Write-Host "Open VSCode WorkSpace!: $(ghq root)/$repodir"
         code "$(ghq root)/$repodir"

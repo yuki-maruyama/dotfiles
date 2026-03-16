@@ -50,6 +50,15 @@ APT_PACKAGES=(
 
 sudo apt install ${APT_PACKAGES[@]} -y
 
+# install gwq
+if type gwq &>/dev/null
+then
+  echo "gwq is already installed"
+else
+  GWQ_VERSION=$(curl -sL https://api.github.com/repos/d-kuro/gwq/releases/latest | grep '"tag_name"' | sed 's/.*"v\(.*\)".*/\1/')
+  curl -sL "https://github.com/d-kuro/gwq/releases/download/v${GWQ_VERSION}/gwq_${GWQ_VERSION}_linux_${ARCH}.tar.gz" | tar xz -C ~/.local/bin gwq
+fi
+
 # install mise plugins
 MISE_PLUGINS=(
   "ghq"

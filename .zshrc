@@ -77,31 +77,35 @@ setopt hist_save_no_dups
 setopt inc_append_history
 
 # commands
+_repo_list() {
+  { ghq list; gwq list 2>/dev/null; } | sort -u | fzf -1 +m
+}
+
 cdrepo() {
-  local repodir=$(ghq list | fzf -1 +m) && cd $(ghq root)/$repodir
+  local repodir=$(_repo_list) && [ -n "$repodir" ] && cd $(ghq root)/$repodir
 }
 
 coderepo() {
-  local repodir=$(ghq list | fzf -1 +m) &&
-  echo Open VSCode WorkSpace! : $(ghq root)/$repodir
+  local repodir=$(_repo_list)
   if [ -n "$repodir" ]; then
-   code $(ghq root)/$repodir
+    echo Open VSCode WorkSpace! : $(ghq root)/$repodir
+    code $(ghq root)/$repodir
   fi
 }
 
 codewebstorm() {
-  local repodir=$(ghq list | fzf -1 +m) &&
-  echo Open WebStorm WorkSpace! : $(ghq root)/$repodir
+  local repodir=$(_repo_list)
   if [ -n "$repodir" ]; then
-   webstorm $(ghq root)/$repodir
+    echo Open WebStorm WorkSpace! : $(ghq root)/$repodir
+    webstorm $(ghq root)/$repodir
   fi
 }
 
 codegoland() {
-  local repodir=$(ghq list | fzf -1 +m) &&
-  echo Open GoLand WorkSpace! : $(ghq root)/$repodir
+  local repodir=$(_repo_list)
   if [ -n "$repodir" ]; then
-   goland $(ghq root)/$repodir
+    echo Open GoLand WorkSpace! : $(ghq root)/$repodir
+    goland $(ghq root)/$repodir
   fi
 }
 

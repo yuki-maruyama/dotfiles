@@ -28,6 +28,7 @@ foreach ($wingetPackage in $wingetPackageList) {
 $symlinks = @(
     ("$HOME\.config\starship.toml", "$scriptDirectory\.config\starship.toml"),
     ("$HOME\.config\git\ignore", "$scriptDirectory\.config\git\ignore"),
+    ("$HOME\.config\gwq\config.toml", "$scriptDirectory\.config\gwq\config.toml"),
     ("$PROFILE", "$scriptDirectory\Microsoft.PowerShell_profile.ps1")
 )
 

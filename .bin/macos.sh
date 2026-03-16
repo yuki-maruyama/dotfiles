@@ -26,6 +26,7 @@ BREW_PACKAGES=(
   "gpg"
   "pinentry-mac"
   "ghq"
+  "d-kuro/tap/gwq"
   "gh"
 )
 

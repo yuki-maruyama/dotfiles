@@ -23,6 +23,7 @@ DIR_SYMLINKS=(
 	".config/git/ignore"
 	".config/starship.toml"
 	".config/sheldon/plugins.toml"
+	".config/gwq/config.toml"
 )
 
 ## home root dir symlink

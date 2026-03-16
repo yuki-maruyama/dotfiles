@@ -1,0 +1,8 @@
+[worktree]
+basedir = "~/ghq"
+
+[naming]
+template = "{{.Host}}/{{.Owner}}/{{.Repository}}={{.Branch}}"
+
+[cd]
+launch_shell = false
