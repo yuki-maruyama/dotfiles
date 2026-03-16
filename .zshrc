@@ -116,6 +116,25 @@ codegoland() {
 
 delete-merged-branch() {
   git branch --merged | grep -v "\\*\\|master\\|main\\|dev\\|develop" | xargs -I % git branch -d %
+
+  # Delete merged gwq worktrees
+  if type gwq &>/dev/null && type jq &>/dev/null; then
+    gwq list --json 2>/dev/null | jq -r '.[] | select(.is_main == false and .branch != "HEAD") | "\(.path)\t\(.branch)"' | while IFS=$'\t' read -r wt_path wt_branch; do
+      local default_branch=""
+      for candidate in main master; do
+        if git -C "$wt_path" rev-parse --verify "origin/$candidate" &>/dev/null; then
+          default_branch="$candidate"
+          break
+        fi
+      done
+      [ -z "$default_branch" ] && continue
+
+      if git -C "$wt_path" merge-base --is-ancestor HEAD "origin/$default_branch" 2>/dev/null; then
+        echo "Removing merged worktree: $wt_branch ($wt_path)"
+        gwq remove -b "$wt_path"
+      fi
+    done
+  fi
 }
 
 export-envrc() {

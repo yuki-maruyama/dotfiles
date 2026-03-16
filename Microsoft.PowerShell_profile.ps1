@@ -25,6 +25,29 @@ function delete-merged-branch {
     git branch --merged |
         Where-Object { $_ -notmatch '^\*|master|main|dev|develop' } |
         ForEach-Object { git branch -d $_.Trim() }
+
+    # Delete merged gwq worktrees
+    if (Get-Command gwq -ErrorAction SilentlyContinue) {
+        $worktrees = gwq list --json 2>$null | ConvertFrom-Json
+        foreach ($wt in $worktrees) {
+            if ($wt.is_main -or $wt.branch -eq "HEAD") { continue }
+            $defaultBranch = $null
+            foreach ($candidate in @("main", "master")) {
+                git -C $wt.path rev-parse --verify "origin/$candidate" 2>$null | Out-Null
+                if ($LASTEXITCODE -eq 0) {
+                    $defaultBranch = $candidate
+                    break
+                }
+            }
+            if (-not $defaultBranch) { continue }
+
+            git -C $wt.path merge-base --is-ancestor HEAD "origin/$defaultBranch" 2>$null | Out-Null
+            if ($LASTEXITCODE -eq 0) {
+                Write-Host "Removing merged worktree: $($wt.branch) ($($wt.path))"
+                gwq remove -b $wt.path
+            }
+        }
+    }
 }
 
 # keybind
