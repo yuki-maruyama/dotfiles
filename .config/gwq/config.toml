@@ -1,5 +1,5 @@
 [worktree]
-basedir = "~/ghq"
+basedir = "~/git"
 
 [naming]
 template = "{{.Host}}/{{.Owner}}/{{.Repository}}={{.Branch}}"

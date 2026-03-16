@@ -54,6 +54,11 @@ if type direnv &>/dev/null
 then
   eval "$(direnv hook zsh)"
 fi
+## gwq
+if type gwq &>/dev/null
+then
+  source <(gwq completion zsh)
+fi
 ## paths
 if type go &>/dev/null
 then
@@ -78,7 +83,7 @@ setopt inc_append_history
 
 # commands
 _repo_list() {
-  { ghq list; gwq list 2>/dev/null; } | sort -u | fzf -1 +m
+  ghq list | fzf -1 +m
 }
 
 cdrepo() {

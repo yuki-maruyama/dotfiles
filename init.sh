@@ -20,6 +20,7 @@ BASEDIR=$(dirname $0)
 cd $BASEDIR
 
 DIR_SYMLINKS=(
+	".config/git/config"
 	".config/git/ignore"
 	".config/starship.toml"
 	".config/sheldon/plugins.toml"

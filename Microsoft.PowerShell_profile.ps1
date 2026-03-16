@@ -3,9 +3,7 @@ Invoke-Expression (&starship init powershell)
 
 # commands
 function Get-RepoList {
-    $ghqList = ghq list
-    $gwqList = gwq list 2>$null
-    ($ghqList + $gwqList) | Sort-Object -Unique | fzf -1 +m
+    ghq list | Sort-Object -Unique | fzf -1 +m
 }
 
 function cdrepo {
