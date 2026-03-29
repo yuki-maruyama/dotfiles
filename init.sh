@@ -38,11 +38,17 @@ done
 ## not root dir symlink
 for f in ${DIR_SYMLINKS[@]}; do
 	dir=$(dirname "$f")
-  
+
 	# Check if the directory exists, if not, create it
   if [ ! -d "$HOME/$dir" ]; then
     mkdir -p "$HOME/$dir"
   fi
 
 	ln -snfv ${PWD}/"$f" "$HOME/$f"
+done
+
+## agent skills symlink (.agent/skills -> .claude/skills, .codex/skills)
+for d in .claude .codex; do
+	mkdir -p "$HOME/$d"
+	ln -snfv "$HOME/.agent/skills" "$HOME/$d/skills"
 done

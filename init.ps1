@@ -29,7 +29,8 @@ $symlinks = @(
     ("$HOME\.config\starship.toml", "$scriptDirectory\.config\starship.toml"),
     ("$HOME\.config\git\ignore", "$scriptDirectory\.config\git\ignore"),
     ("$HOME\.config\gwq\config.toml", "$scriptDirectory\.config\gwq\config.toml"),
-    ("$PROFILE", "$scriptDirectory\Microsoft.PowerShell_profile.ps1")
+    ("$PROFILE", "$scriptDirectory\Microsoft.PowerShell_profile.ps1"),
+    ("$HOME\.agent", "$scriptDirectory\.agent")
 )
 
 Write-Host "Creating symlink"
@@ -38,6 +39,13 @@ foreach ($symlink in $symlinks) {
     $link = $symlink[1]
     Write-Host "Creating symlink $link -> $target"
     New-Item -ItemType SymbolicLink -Path $target -Target $link -Force
+}
+
+# agent skills symlink (.agent/skills -> .claude/skills, .codex/skills)
+foreach ($dir in @(".claude", ".codex")) {
+    $dirPath = "$HOME\$dir"
+    if (!(Test-Path $dirPath)) { New-Item -ItemType Directory -Path $dirPath -Force }
+    New-Item -ItemType SymbolicLink -Path "$dirPath\skills" -Target "$HOME\.agent\skills" -Force
 }
 
 # wait for user input
