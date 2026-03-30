@@ -47,8 +47,10 @@ for f in ${DIR_SYMLINKS[@]}; do
 	ln -snfv ${PWD}/"$f" "$HOME/$f"
 done
 
-## agent skills symlink (.agent/skills -> .claude/skills, .codex/skills)
-for d in .claude .codex; do
+## agent skills symlink (each .agent/skills/* -> .claude/skills/*, .codex/skills/*)
+for d in .claude/skills .codex/skills; do
 	mkdir -p "$HOME/$d"
-	ln -snfv "$HOME/.agent/skills" "$HOME/$d/skills"
+	for skill in "$HOME/.agent/skills"/*/; do
+		ln -snfv "$skill" "$HOME/$d/"
+	done
 done

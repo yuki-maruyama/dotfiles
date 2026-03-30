@@ -41,11 +41,13 @@ foreach ($symlink in $symlinks) {
     New-Item -ItemType SymbolicLink -Path $target -Target $link -Force
 }
 
-# agent skills symlink (.agent/skills -> .claude/skills, .codex/skills)
-foreach ($dir in @(".claude", ".codex")) {
+# agent skills symlink (each .agent/skills/* -> .claude/skills/*, .codex/skills/*)
+foreach ($dir in @(".claude\skills", ".codex\skills")) {
     $dirPath = "$HOME\$dir"
     if (!(Test-Path $dirPath)) { New-Item -ItemType Directory -Path $dirPath -Force }
-    New-Item -ItemType SymbolicLink -Path "$dirPath\skills" -Target "$HOME\.agent\skills" -Force
+    foreach ($skill in Get-ChildItem -Directory "$HOME\.agent\skills") {
+        New-Item -ItemType SymbolicLink -Path "$dirPath\$($skill.Name)" -Target $skill.FullName -Force
+    }
 }
 
 # wait for user input
