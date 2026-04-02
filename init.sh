@@ -49,6 +49,8 @@ done
 
 ## agent skills symlink (each .agent/skills/* -> .claude/skills/*, .codex/skills/*)
 for d in .claude/skills .codex/skills; do
+	# Remove old directory-level symlink if present (from previous init versions)
+	[ -L "$HOME/$d" ] && rm "$HOME/$d"
 	mkdir -p "$HOME/$d"
 	for skill in "$HOME/.agent/skills"/*/; do
 		ln -snfv "$skill" "$HOME/$d/"
