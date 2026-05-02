@@ -1,9 +1,14 @@
-Invoke-Expression (&starship init powershell)
-(&mise activate pwsh) | Out-String | Invoke-Expression
+if (Get-Command starship -ErrorAction SilentlyContinue) {
+    Invoke-Expression (&starship init powershell)
+}
+
+if (Get-Command mise -ErrorAction SilentlyContinue) {
+    (&mise activate pwsh --shims) | Out-String | Invoke-Expression
+}
 
 # commands
 function Get-RepoList {
-    ghq list | Sort-Object -Unique | fzf -1 +m
+    ghq list | fzf -1 +m
 }
 
 function cdrepo {

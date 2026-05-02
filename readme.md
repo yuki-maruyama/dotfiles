@@ -43,6 +43,7 @@ By default, if a target file already exists and is not a symlink, it is moved to
 - Debian setup installs required packages with `apt`.
 - Windows setup installs packages with `winget`.
 - Private or machine-local configuration should not be committed to this repository.
+- Set `DOTFILES_CHECK_UPDATES=true` to enable the zsh startup check for local dotfiles changes. It is disabled by default to keep shell startup fast.
 
 ## Checks
 

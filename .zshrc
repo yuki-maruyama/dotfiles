@@ -21,48 +21,62 @@ case ${OSTYPE} in
 		;;
 esac
 # sheldon
-eval "$(sheldon source)"
+if command -v sheldon >/dev/null 2>&1; then
+  eval "$(sheldon source)"
+fi
 
 # brew installed commands (macOS)
-if type brew &>/dev/null
-then
-  # zsh-autocomplete
-  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+completion_dir_found=false
+for fpath_dir in /opt/homebrew/share/zsh/site-functions /usr/local/share/zsh/site-functions; do
+  if [ -d "$fpath_dir" ]; then
+    FPATH="$fpath_dir:${FPATH}"
+    completion_dir_found=true
+  fi
+done
+
+if [ "$completion_dir_found" = true ]; then
   autoload -Uz compinit
-  compinit
+  zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
+  if [ -s "$zcompdump" ]; then
+    compinit -C -d "$zcompdump"
+  else
+    compinit -d "$zcompdump"
+  fi
   zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 fi
 
 # hooks
 ## mise
-if type mise &>/dev/null
+if command -v mise >/dev/null 2>&1
 then
-  eval "$(mise activate zsh)"
+  eval "$(mise activate zsh --shims)"
 fi
 ## starship
-if type starship &>/dev/null && [[ -z "$NO_STARSHIP" || "$NO_STARSHIP" != "true" ]]
+if command -v starship >/dev/null 2>&1 && [[ "$TERM" != "dumb" && (-z "$NO_STARSHIP" || "$NO_STARSHIP" != "true") ]]
 then
   eval "$(starship init zsh)"
 fi
 ## gpg
-if type gpg &>/dev/null;
-then
-  export GPG_TTY=$(tty)
-fi
+export GPG_TTY=${GPG_TTY:-$(tty)}
 ## direnv
-if type direnv &>/dev/null
+if command -v direnv >/dev/null 2>&1
 then
   eval "$(direnv hook zsh)"
 fi
 ## gwq
-if type gwq &>/dev/null
+if command -v gwq >/dev/null 2>&1
 then
-  source <(gwq completion zsh)
+  gwq_completion_cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/gwq-completion.zsh"
+  if [ ! -s "$gwq_completion_cache" ] || [ "$gwq_completion_cache" -ot "$(command -v gwq)" ]; then
+    mkdir -p "${gwq_completion_cache:h}"
+    gwq completion zsh >| "$gwq_completion_cache" 2>/dev/null
+  fi
+  [ -r "$gwq_completion_cache" ] && source "$gwq_completion_cache"
 fi
 ## paths
-if type go &>/dev/null
+if [ -d "$HOME/go/bin" ]
 then
-  export PATH="$PATH:$(go env GOPATH)/bin"
+  export PATH="$PATH:$HOME/go/bin"
 fi
 
 # aliases
@@ -163,7 +177,7 @@ zle -N fzf-select-history
 bindkey '^r' fzf-select-history
 
 # dotfiles update checker
-if [ -d "$HOME/dotfiles" ]; then
+if [[ "$DOTFILES_CHECK_UPDATES" == "true" && -d "$HOME/dotfiles" ]]; then
   if test -n "$(git -C $HOME/dotfiles status --porcelain)"; then
     echo -e "\033[0;31m[dotfiles] You have uncommitted changes in your dotfiles repository.\033[0m"
   elif test -n "$(git -C $HOME/dotfiles diff --stat --cached origin/master)"; then

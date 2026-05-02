@@ -36,6 +36,3 @@ apply = ['defer']
 github = "zsh-users/zsh-autosuggestions"
 use = ['{{ name }}.zsh']
 apply = ['defer']
-
-[plugins.asdf]
-github = "asdf-vm/asdf"
