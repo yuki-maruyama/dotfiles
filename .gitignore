@@ -1,0 +1,15 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+.envrc
+*.local
+
+.claude/settings.local.json
+.codex/
+.serena/
+.vscode/
+.idea/
+
+docker-compose.override.yml
+docker-compose.*.override.yml
