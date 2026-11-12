@@ -20,6 +20,12 @@ case ${OSTYPE} in
     export PATH="$PNPM_HOME:$PATH"
 		;;
 esac
+
+# Machine-local variables and overrides (not tracked in Git)
+if [[ -r "${ZDOTDIR:-$HOME}/.zshrc.local" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zshrc.local"
+fi
+
 # sheldon
 if command -v sheldon >/dev/null 2>&1; then
   eval "$(sheldon source)"

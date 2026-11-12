@@ -37,6 +37,24 @@ Both setup scripts are designed to be re-runnable.
 
 By default, if a target file already exists and is not a symlink, it is moved to a timestamped `.backup.YYYYMMDDHHMMSS` path before the symlink is created.
 
+## Machine-local zsh configuration
+
+Create `~/.zshrc.local` on each machine to set environment variables and other
+machine-specific options:
+
+```zsh
+export MY_VARIABLE="machine-specific-value"
+export PATH="$HOME/custom/bin:$PATH"
+export DOTFILES_CHECK_UPDATES=true
+```
+
+This file is optional and is loaded after platform-specific defaults, before
+plugins and tool initialization. If you use `ZDOTDIR`, create `.zshrc.local` in
+that directory instead. `*.local` files are ignored by Git.
+
+Open a new terminal or run `source ~/.zshrc` to apply changes (use
+`source "$ZDOTDIR/.zshrc"` if you use `ZDOTDIR`).
+
 ## Notes
 
 - macOS setup installs packages with Homebrew.
